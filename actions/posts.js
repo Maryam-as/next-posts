@@ -39,7 +39,7 @@ export async function createPost(prevState, formData) {
   }
 
   await storePost({ imageUrl, title, content, userId: 1 });
-
+  revalidatePath("/", "layout");
   redirect("/feed");
 }
 

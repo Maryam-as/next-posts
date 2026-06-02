@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import { uploadImage } from "@/lib/cloudinary";
@@ -44,4 +45,5 @@ export async function createPost(prevState, formData) {
 
 export async function togglePostLikeStatus(postId) {
   await updatePostLikeStatus(postId, 2);
+  revalidatePath("/", "layout");
 }
